@@ -25,7 +25,7 @@
             <a href="/article-0-{{ kwargs.category_id }}">全部</a>
         {% endif %}
             {% for row in article_type_list %}
-{#                <div>{{ row.caption }} + " "</div>#}
+{#                {             <div>{{ row.caption }} + " "</div>#}
                 {% if row.id == kwargs.article_type_id %}
                     <a class="active" href="/article-{{ row.id }}-{{ kwargs.category_id }}">{{ row.caption }}</a>
                 {% else %}

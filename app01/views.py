@@ -4,7 +4,7 @@ from app01 import models
 
 def hello(request):
     return HttpResponse('hello world')
-
+# 测试git
 
 def article(request, *args, **kwargs):
     print(kwargs)

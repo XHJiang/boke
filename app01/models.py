@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 
+# 测试git
 class Category(models.Model):
     caption = models.CharField(max_length=16)
 
