@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+    <style>
+        .condition a{
+            display: inline-block;
+            padding: 3px 5px;
+            border: 1px solid #dddddd;
+            margin: 5px;
+        }
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>过滤条件</h1>
+    <div class="condition">
+        <div>
+        {% if kwargs.article_type_id == 0 %}
+            <a class="active" href="/article-0-{{ kwargs.category_id }}">全部</a>
+        {% else %}
+            <a href="/article-0-{{ kwargs.category_id }}">全部</a>
+        {% endif %}
+            {% for row in article_type_list %}
+{#                <div>{{ row.caption }} + " "</div>#}
+                {% if row.id == kwargs.article_type_id %}
+                    <a class="active" href="/article-{{ row.id }}-{{ kwargs.category_id }}">{{ row.caption }}</a>
+                {% else %}
+                    <a href="/article-{{ row.id }}-{{ kwargs.category_id }}">{{ row.caption }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div>
+            {% if kwargs.category_id == 0 %}
+                <a class="active" href="/article-{{ kwargs.article_type_id }}-0">全部</a>
+            {% else %}
+                <a href="/article-{{ kwargs.article_type_id }}-0">全部</a>
+            {% endif %}
+            {% for row in category_list %}
+                {% if row.id == kwargs.category_id %}
+                    <a class="active" href="/article-{{ kwargs.article_type_id }}-{{ row.id }}">{{ row.caption }}</a>
+                {% else %}
+                    <a href="/article-{{ kwargs.article_type_id }}-{{ row.id }}">{{ row.caption }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <h1>查询结果</h1>
+    <ul>
+        {% for row in result %}
+            <li>{{ row.id }}-{{ row.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
